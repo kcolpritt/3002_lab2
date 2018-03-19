@@ -75,8 +75,7 @@ class Robot:
         """
 	# wait for and get the transform between two frames
         self._odom_list.waitForTransform('YOUR_STRING_HERE', 'YOUR_STRING_HERE', rospy.Time(0), rospy.Duration(1.0))
-        (position, orientation) = self._odom_list.lookupTransform('YOUR_STRING_HERE','YOUR_STRING_HERE', rospy.Time(0)) #finds the position and oriention of two objects relative to each other (hint: this returns arrays, while Pose uses lists)
-        
+        (position, orientation) = self._odom_list.lookupTransform('YOUR_STRING_HERE','YOUR_STRING_HERE', rospy.Time(0)) 
 	# save the current position and orientation
 	self._current.position.x = position[0]
         self._current.position.y = position[1]
