@@ -73,20 +73,25 @@ class Robot:
             This is a callback that runs every 0.1s.
             Updates this instance of Robot's internal position variable (self._current)
         """
+	# wait for and get the transform between two frames
         self._odom_list.waitForTransform('YOUR_STRING_HERE', 'YOUR_STRING_HERE', rospy.Time(0), rospy.Duration(1.0))
         (position, orientation) = self._odom_list.lookupTransform('YOUR_STRING_HERE','YOUR_STRING_HERE', rospy.Time(0)) #finds the position and oriention of two objects relative to each other (hint: this returns arrays, while Pose uses lists)
-        self._current.position.x = position[0]
+        
+	# save the current position and orientation
+	self._current.position.x = position[0]
         self._current.position.y = position[1]
-
         self._current.orientation.x = orientation[0]
         self._current.orientation.y = orientation[1]
         self._current.orientation.z = orientation[2]
         self._current.orientation.w = orientation[3]
-        q = [self._current.orientation.x,
+        
+	# create a quaternion
+	q = [self._current.orientation.x,
              self._current.orientation.y,
              self._current.orientation.z,
-             self._current.orientation.w] # quaternion nonsense
+             self._current.orientation.w] 
 
+	# convert the quaternion to roll pitch yaw
         (roll, pitch, yaw) = euler_from_quaternion(q)    
         
 
