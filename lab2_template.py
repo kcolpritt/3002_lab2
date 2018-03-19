@@ -12,6 +12,7 @@ class Robot:
         """
             This constructor sets up class variables and pubs/subs
         """
+	
         self._current = null # initlize correctly 
         self._odom_list = tf.TransformListener()
         rospy.Timer(rospy.Duration(.1), self.timerCallback)
